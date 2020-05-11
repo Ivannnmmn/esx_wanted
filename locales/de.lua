@@ -27,5 +27,7 @@ Locales['de'] = {
   ['gcphone_message_add_wanted'] = '(Neue Fahndung) Gesuchte Person: :%s Zeit :%ssMinuten.',
   ['gcphone_message_unwanted'] = '(Abgebrochene Suche) Gesuchte Person:%s wird nicht mehr gesucht',
   ['wanted_player'] = 'Gesuchte Person: %s | Zeit: %s Minuten',
-  ['wanted_player_show'] = 'Fahndung nach'
+  ['wanted_player_show'] = 'Fahndung nach',
+  ['id_not_online'] = 'This ID player is no longer online.',
+  ['not_cops'] = 'You are not a cops.'
 }

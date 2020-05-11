@@ -27,5 +27,7 @@ Locales['en'] = {
   ['gcphone_message_add_wanted'] = '(New wanted) Wanted person: :%s time :%ssminutes.',
   ['gcphone_message_unwanted'] = '(UnWanted) Wanted person:%s UnWanted',
   ['wanted_player'] = 'Wanted person: %s | time: %s minutes',
-  ['wanted_player_show'] = 'The wanted'
+  ['wanted_player_show'] = 'The wanted',
+  ['id_not_online'] = 'This ID player is no longer online.',
+  ['not_cops'] = 'You are not a cops.'
 }

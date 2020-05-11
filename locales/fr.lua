@@ -27,5 +27,7 @@ Locales['fr'] = {
   ['gcphone_message_add_wanted'] = '(Nouvel avis de Recherche) Personne Recherchée: :%s durée :%ssminutes.',
   ['gcphone_message_unwanted'] = '(Annulation de recherche) Personne Recherchée:%s n\'est plus recherchée',
   ['wanted_player'] = 'Personen Recherchée: %s | durée: %s minutes',
-  ['wanted_player_show'] = 'Le Suspect'
+  ['wanted_player_show'] = 'Le Suspect',
+  ['id_not_online'] = 'This ID player is no longer online.',
+  ['not_cops'] = 'You are not a cops.'
 }

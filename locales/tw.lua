@@ -27,5 +27,7 @@ Locales['tw'] = {
     ['gcphone_message_add_wanted'] = '(新通緝令) 玩家 :%s 時間 :%s分鐘。',
     ['gcphone_message_unwanted'] = '(解除通緝令) 玩家 :%s 已解除通緝令。',
     ['wanted_player'] = '名稱: %s | 通緝剩餘時間: %s 分鐘',
-    ['wanted_player_show'] = '通緝犯出沒'
+    ['wanted_player_show'] = '通緝犯出沒',
+    ['id_not_online'] = '此ID玩家不再線上',
+    ['not_cops'] = '你不是警察'
 }
