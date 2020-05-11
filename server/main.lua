@@ -2,6 +2,55 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+RegisterCommand("wanted", function(src, args, raw)
+
+	local xPlayer = ESX.GetPlayerFromId(src)
+
+	if xPlayer["job"]["name"] == "police" then
+
+		local wantedPlayer = args[1]
+		local wantedTime = tonumber(args[2])
+        local wantedReason = args[3]
+        local name = GetPlayerName(wantedPlayer)
+
+		if GetPlayerName(wantedPlayer) ~= nil then
+
+			if wantedTime ~= nil then
+				wantedPlayer(wantedPlayer, wantedTime)
+
+				TriggerClientEvent("esx:showNotification", src,_U('police_message', name, wantedTime))
+				if args[3] ~= nil then
+                    TriggerClientEvent('chat:addMessage', -1, { args = { _U('add_chat'), _('add_chat_message', name, args[3]) }, color = { 249, 166, 0 } })
+                end
+			else
+				TriggerClientEvent("esx:showNotification", src,_U('time_error'))
+			end
+		else
+			TriggerClientEvent("esx:showNotification", src,_U('id_not_online'))
+		end
+	else
+		TriggerClientEvent("esx:showNotification", src,_U('not_cops'))
+	end
+end)
+
+RegisterCommand("unwanted", function(src, args)
+
+	local xPlayer = ESX.GetPlayerFromId(src)
+
+	if xPlayer["job"]["name"] == "police" then
+
+		local wantedPlayer = args[1]
+
+		if GetPlayerName(wantedPlayer) ~= nil then
+			UnWanted(wantedPlayer)
+		else
+			TriggerClientEvent("esx:showNotification", src,_U('id_not_online'))
+		end
+	else
+		TriggerClientEvent("esx:showNotification", src,_U('not_cops'))
+	end
+end)
+
 ESX.RegisterServerCallback('esx_wanted:getOnlinePlayers', function(source, cb)
 	local xPlayers = ESX.GetPlayers()
 	local players  = {}
