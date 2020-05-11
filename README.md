@@ -23,8 +23,10 @@ start esx_wanted
 - Add SQL
 
 ## Command
-- `/wanted [ID] [Time] [Reason]` Add Wanted
-- `/unwanted [ID]` UnWanted
+- Add Wanted
+`/wanted [ID] [Time] [Reason]`
+- UnWanted
+`/unwanted [ID]`
 
 ## Add to esx_policejob
 ![Image](https://i.imgur.com/UEdxmbC.png)
