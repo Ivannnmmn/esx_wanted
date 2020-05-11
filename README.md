@@ -22,6 +22,10 @@ start esx_wanted
 - Change `Config`
 - Add SQL
 
+## Command
+`/wanted [ID] [Time] [Reason]` Add Wanted
+`/unwanted [ID]` UnWanted
+
 ## Add to esx_policejob
 ![Image](https://i.imgur.com/UEdxmbC.png)
 - esx_policejob > client > main
