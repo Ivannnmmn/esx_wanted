@@ -20,6 +20,7 @@ Police wanted With DISCORD and GCPHONE records.
 start esx_wanted
 ```
 - Change `Config`
+- Add SQL
 
 ## Add to esx_policejob
 ![Image](https://i.imgur.com/UEdxmbC.png)
