@@ -105,12 +105,12 @@ ESX.RegisterServerCallback("esx_wanted:retrieveWantedPlayers", function(source, 
 	
 	local wantedPersons = {}
 
-    MySQL.Async.fetchAll("SELECT name, wanted, identifier FROM users WHERE wanted > @wanted", { ["@wanted"] = 0 }, function(result)
+    MySQL.Async.fetchAll("SELECT firstname, lastname, wanted, identifier FROM users WHERE wanted > @wanted", { ["@wanted"] = 0 }, function(result)
 
 
         for i = 1, #result, 1 do
             table.insert(wantedPersons, { 
-                name = result[i].name,
+                name = result[i].firstname,
                 wantedTime = result[i].wanted,
                 identifier = result[i].identifier,
             })
