@@ -16,7 +16,7 @@ RegisterCommand("wanted", function(src, args, raw)
 		if GetPlayerName(wantedPlayer) ~= nil then
 
 			if wantedTime ~= nil then
-				wantedPlayer(wantedPlayer, wantedTime)
+				WantedPlayer(wantedPlayer, wantedTime)
 
 				TriggerClientEvent("esx:showNotification", src,_U('police_message', name, wantedTime))
 				if args[3] ~= nil then
@@ -110,7 +110,7 @@ ESX.RegisterServerCallback("esx_wanted:retrieveWantedPlayers", function(source, 
 
         for i = 1, #result, 1 do
             table.insert(wantedPersons, { 
-                name = result[i].firstname,
+                name = result[i].firstname .. " " .. result[i].lastname,
                 wantedTime = result[i].wanted,
                 identifier = result[i].identifier,
             })
