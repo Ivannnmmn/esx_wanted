@@ -1,8 +1,10 @@
 local PlayerData = {}
+local NumberCharset = {}
 local wantedTime = 0
 blip = nil
 blips = {}
 ESX = nil
+for i = 48,  57 do table.insert(NumberCharset, string.char(i)) end
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -81,7 +83,8 @@ function OpenPoliceWantedMenu()
 		align    = 'top-left',
 		elements = {
 			{label = _U('open_wanted'), value = 'open_wanted'},
-			{label = _U('open_unwanted'), value = 'open_unwanted'}
+			{label = _U('open_unwanted'), value = 'open_unwanted'},
+			{label = _U('open_feature'), value = 'open_feature'}
 	}}, function(data, menu)
 		if data.current.value == 'open_wanted' then
 			ESX.TriggerServerCallback('esx_wanted:getOnlinePlayers', function(players)
@@ -212,10 +215,59 @@ function OpenPoliceWantedMenu()
 					menu2.close()
 				end)
 			end)
+		elseif data.current.value == 'open_feature' then
+			ESX.UI.Menu.Open(
+				'dialog', GetCurrentResourceName(), 'wanted_choose_time_menu',
+				{
+					title = _U('set_min')
+				},
+			function(data, menu)
+
+				local wantedTime = tonumber(data.value)
+
+				if wantedTime == nil then
+					ESX.ShowNotification(_U('time_error'))
+				else
+					menu.close()
+
+						ESX.UI.Menu.Open(
+							'dialog', GetCurrentResourceName(), 'wanted_choose_feature_menu',
+							{
+							title = _U('feature')
+							},
+						function(data2, menu2)
+		
+							local feature = data2.value
+		
+							if feature == nil then
+								ESX.ShowNotification(_U('feature_error'))
+							else
+								menu2.close()
+								local number = GetRandomNumber(4)
+								TriggerServerEvent("esx_wanted:wantedFeature", number, wantedTime, feature)
+							end
+		
+						end, function(data2, menu2)
+							menu2.close()
+						end)
+				end
+			end, function(data, menu)
+				menu.close()
+			end)
 		end
 	end, function(data, menu)
 		menu.close()
 	end)
+end
+
+function GetRandomNumber(length)
+	Citizen.Wait(1)
+	math.randomseed(GetGameTimer())
+	if length > 0 then
+		return GetRandomNumber(length - 1) .. NumberCharset[math.random(1, #NumberCharset)]
+	else
+		return ''
+	end
 end
 
 RegisterNetEvent('esx_wanted:setBlip')

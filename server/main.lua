@@ -73,14 +73,43 @@ AddEventHandler("esx_wanted:wantedPlayer", function(Playerid, name, wantedTime, 
     local src = source
     local Playerid = tonumber(Playerid)
     local xPlayer = ESX.GetPlayerFromId(source)
-    WantedPlayer(Playerid, wantedTime)
-	TriggerClientEvent('chat:addMessage', -1, { args = { _U('add_chat'), _('add_chat_message', name, wantedReason) }, color = { 249, 166, 0 } })
-
+	WantedPlayer(Playerid, wantedTime)
+	TriggerClientEvent('chat:addMessage', -1, { args = { _U('add_chat'), _('add_chat_message', name, wantedReason) }, color = { 23, 80, 165 } })
     TriggerClientEvent("esx:showNotification", Playerid,_U('player_wanted', wantedReason, wantedTime))
     if Config.Discord then
         policeToDiscord(_U('discord_head'), _U('discord_message',GetPlayerName(src),name,wantedReason,wantedTime), 56108)
     end
 end)
+
+RegisterServerEvent("esx_wanted:wantedFeature")
+AddEventHandler("esx_wanted:wantedFeature", function(Number, wantedTime, wantedFeature)
+	local src = source
+	TriggerClientEvent('chat:addMessage', -1, { args = { _U('add_chat'), _('add_chat_message_feature', Number, wantedFeature, wantedTime) }, color = { 23, 80, 165 } })
+	FeatureTime(Number, wantedTime)
+    if Config.Discord then
+        policeToDiscord(_U('discord_head'), _U('discord_message_feature',GetPlayerName(src),Number,wantedFeature,wantedTime), 56108)
+    end
+end)
+
+function FeatureTime(Number, wantedTime)
+    Citizen.CreateThread(function()
+
+		while wantedTime > 0 do
+
+			wantedTime = wantedTime - 1
+			if wantedTime == 0 then
+				TriggerClientEvent('chat:addMessage', -1, { args = { _U('add_chat'), _('add_chat_message_unfeature', Number) }, color = { 23, 80, 165 } })
+				if Config.Discord then
+					policeToDiscord(_U('discord_head_unwanted'), _U('discord_message_unfeature',Number), 16711680)
+				end
+			end
+
+			Citizen.Wait(60000)
+
+		end
+
+	end)
+end
 
 function WantedPlayer(wantedPlayer, wantedTime)
     TriggerClientEvent("esx_wanted:wantedPlayer",wantedPlayer, wantedTime)
@@ -110,7 +139,7 @@ ESX.RegisterServerCallback("esx_wanted:retrieveWantedPlayers", function(source, 
 
         for i = 1, #result, 1 do
             table.insert(wantedPersons, { 
-                name = result[i].firstname .. " " .. result[i].lastname,
+                name = result[i].firstname,
                 wantedTime = result[i].wanted,
                 identifier = result[i].identifier,
             })
