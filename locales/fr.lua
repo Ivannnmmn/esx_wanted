@@ -18,6 +18,7 @@ Locales['fr'] = {
   ['add_chat'] = 'LSPD',
   ['add_chat_message'] = '%s ^8Recherché^7 Inculpation: %s',
   ['add_chat_message_feature'] = '^1[New Wanted] ^3Case number:^1%s ^0Feature: ^2%s \n ^0Time: ^2%s minutes',
+  ['add_chat_message_unfeature'] = '^1[Unwanted] ^Case number:^1%s ^0Wanted time has expired.',
   ['player_wanted'] = '~y~Vous avez un avis de recherche! ~w~Inculpation:%s durée:%s',
   ['police_wanted'] = '%s ~b~Recherché~w~ durée: ~r~%s ~w~minutes!',
   ['police_message'] = '%s ~b~est Recherché~w~ Durée: ~r~%s ~w~minutes!',
